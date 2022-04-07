@@ -54,7 +54,7 @@ exports.storeResult = asyncHandler(async (req, res, _) => {
       if (!nonPartKeys.includes(key)) {
         await db.announcedPuResults.create({
           polling_unit_uniqueid: polligUnit.uniqueid,
-          party_abbreviation: key,
+          party_abbreviation: key.length > 4 ? key.substring(0, 4) : key,
           party_score: req.body[key],
           entered_by_user: "Akinrele Pelumi",
           user_ip_address: "127.0.0.1",
