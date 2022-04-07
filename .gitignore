@@ -1,5 +1,5 @@
 *.pem
 *.env
-*.sql
+*.ppk
 
 /node_modules
