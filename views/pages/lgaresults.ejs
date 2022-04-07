@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../components/head'); %>
+  </head>
+  <body class="container">
+    <header><%- include('../components/header'); %></header>
+
+    <main>
+      <div class="jumbotron">
+        <h1>Local Government Area Results</h1>
+        <p><%= tagline %></p>
+
+        <form action="/lga-results" method="GET" >
+          <fieldset>
+            <select
+              class="selectpicker"
+              data-style="btn-info"
+              name="selectpicker"
+            >
+              <optgroup label="Select Starting Station">
+                <% lgas.forEach(function (lga) { %>
+                <option key value="<%= lga.lga_id  %>" <%= lga.lga_id == selected ? "selected" : "" %>>
+                  <%= lga.lga_name %>
+                </option>
+                <% }) %>
+                
+              </optgroup>
+            </select>
+
+            <input type="submit" id="submit-form" />
+          </fieldset>
+
+          <div class="d-flex flex-row justify-content-center mt-4">
+            <% if (result == null) { %>
+             <h4>Select an LGA to see Results.</h4>
+            <% } else { %>
+              <div class="w-100 d-flex flex-row justify-content-between mb-4 p-4" style="background-color: azure">
+                <strong><%= result.lga_name %></strong>
+                <strong><%= result.score %></strong> 
+              </div>
+            <% } %>
+          </div>
+
+
+        </form>
+      </div>
+    </main>
+
+    <footer><%- include('../components/footer'); %></footer>
+  </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../components/head'); %>
+  </head>
+
+  <body class="container">
+    <header><%- include('../components/header'); %></header>
+
+    <main>
+      <div class="jumbotron">
+        <h1>Add Result</h1>
+
+        <% if (typeof success == 'boolean' && success == true) { %>
+        <div
+          class="w-100 m-4 p-4"
+          style="background-color: aquamarine; color: green; font-weight: 700"
+        >
+          Result added successfully
+        </div>
+        <% } %>
+
+        <form action="/add-result" method="POST">
+          <fieldset class="w-100 d-flex flex-column">
+            <label for="polling_unit_id">Polling Unit ID</label>
+            <input
+              id="polling_unit_id"
+              type="number"
+              name="polling_unit_id"
+              required
+              class="mb-4"
+            />
+
+            <label for="ward">Ward</label>
+            <select
+              class="selectpicker mb-4"
+              data-style="btn-info"
+              name="ward_id"
+              required
+              id="ward"
+            >
+              <optgroup label="Select Ward">
+                <% wards.forEach(function (ward) { %>
+                <option value="<%= ward.ward_id  %>">
+                  <%= ward.ward_name %>
+                </option>
+                <% }) %>
+              </optgroup>
+            </select>
+
+            <label for="lga">LGA</label>
+            <select
+              class="selectpicker mb-4"
+              data-style="btn-info"
+              name="lga_id"
+              id="lga"
+            >
+              <optgroup label="Select Starting Station">
+                <% lgas.forEach(function (lga) { %>
+                <option key value="<%= lga.lga_id  %>">
+                  <%= lga.lga_name %>
+                </option>
+                <% }) %>
+              </optgroup>
+            </select>
+
+            <label for="polling_unit_name">Polling Unit Name</label>
+            <input
+              id="polling_unit_name"
+              type="text"
+              name="polling_unit_name"
+              required
+              class="mb-4"
+            />
+
+            <label for="polling_unit_descrription"
+              >Polling Unit Description</label
+            >
+            <textarea
+              id="polling_unit_descrription"
+              type="text"
+              name="polling_unit_descrription"
+              rows="5"
+              class="mb-4"
+            ></textarea>
+
+            <strong class="mb-4">Results</strong>
+
+            <ul class="p-0">
+              <% parties.forEach(function (party) { %>
+              <div>
+                <label for="<%= party.partyname %>"
+                  ><%= party.partyname %></label
+                >
+                <input
+                  id="polling_unit_id"
+                  type="number"
+                  name="<%= party.partyname %>"
+                  required
+                  class="mb-4"
+                />
+              </div>
+              <% }) %>
+            </ul>
+
+            <input type="submit" id="submit-form" />
+          </fieldset>
+        </form>
+      </div>
+    </main>
+
+    <footer><%- include('../components/footer'); %></footer>
+  </body>
+</html>

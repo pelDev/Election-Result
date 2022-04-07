@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../components/head'); %>
+  </head>
+  <body class="container">
+    <header><%- include('../components/header'); %></header>
+
+    <main>
+      <div class="jumbotron">
+        <h1>Polling Unit Results</h1>
+        <p><%= tagline %></p>
+
+        <div class="d-flex flex-row justify-content-between mb-4 p-4">
+          <strong>Unit Name</strong>
+          <strong>No. Of Votes</strong>
+        </div>
+
+        <ul class="p-0">
+          <% results.forEach(function (result) { %>
+          <li
+            class="d-flex flex-row justify-content-between mb-4 p-4"
+            style="background-color: azure"
+          >
+            <strong><%= result.polling_unit_name %></strong>
+            <strong><%= result.score %></strong>
+          </li>
+          <% }); %>
+        </ul>
+      </div>
+    </main>
+
+    <footer><%- include('../components/footer'); %></footer>
+  </body>
+</html>
